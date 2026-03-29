@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coaching Corner – Leo Reeve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #faf6f0;
+      --sand:    #e8ddd0;
+      --terra:   #b5703a;
+      --rust:    #8c4a22;
+      --bark:    #3b2a1a;
+      --moss:    #6b7c5c;
+      --text:    #2e1f0e;
+      --muted:   #7a6555;
+      --light-terra: #f5ebe0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--sand);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--bark);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover, nav ul a.active { color: var(--terra); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 2rem 4rem;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+    .hero-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--terra);
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* ── EVENT SELECTOR ── */
+    .selector-section {
+      padding: 3rem 2rem 1rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .selector-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .selector-group {
+      flex: 1;
+      min-width: 200px;
+    }
+    .selector-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.5rem;
+    }
+    .selector-group select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #fff;
+      border: 1.5px solid var(--sand);
+      border-radius: 8px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a6555' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      transition: border-color 0.2s;
+    }
+    .selector-group select:focus {
+      outline: none;
+      border-color: var(--terra);
+    }
+
+    /* ── CONTENT AREA ── */
+    .content-area {
+      padding: 2rem 2rem 4rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* placeholder */
+    .placeholder-msg {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .placeholder-msg svg {
+      display: block;
+      margin: 0 auto 1.5rem;
+      opacity: 0.35;
+    }
+
+    /* event detail card */
+    .event-detail { display: none; }
+    .event-detail.active { display: block; animation: fadeIn 0.35s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .event-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--sand);
+    }
+    .event-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--light-terra);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .event-icon svg {
+      width: 40px;
+      height: 40px;
+      color: var(--terra);
+    }
+    .event-title-group h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.25rem;
+    }
+    .event-title-group .event-meta {
+      font-size: 0.8rem;
+      color: var(--moss);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* coaching blocks */
+    .coaching-block {
+      margin-bottom: 2.25rem;
+    }
+    .coaching-block h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .coaching-block h3 .block-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--terra);
+      flex-shrink: 0;
+    }
+    .coaching-block p {
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .coaching-block ul {
+      list-style: none;
+      padding: 0;
+    }
+    .coaching-block ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .coaching-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      background: var(--terra);
+      border-radius: 50%;
+    }
+
+    /* sub-event heading */
+    .sub-event {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin: 2.5rem 0 0.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--sand);
+    }
+    .sub-event:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .sub-event-meta {
+      font-size: 0.78rem;
+      color: var(--moss);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    /* tip callout */
+    .tip-box {
+      background: var(--light-terra);
+      border-left: 4px solid var(--terra);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.4rem;
+      margin: 1.25rem 0;
+    }
+    .tip-box .tip-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.35rem;
+    }
+    .tip-box p {
+      color: var(--text);
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    /* drill card */
+    .drill-card {
+      background: #fff;
+      border: 1.5px solid var(--sand);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .drill-card .drill-name {
+      font-weight: 600;
+      color: var(--bark);
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+    .drill-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bark);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      nav ul { gap: 1.2rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .selector-section { padding: 2rem 1.25rem 0.5rem; }
+      .content-area { padding: 1.5rem 1.25rem 3rem; }
+      .selector-row { flex-direction: column; }
+      .event-header { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="index.html">Leo Reeve</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="coaching.html" class="active">Coaching</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Little Athletics Australia</p>
+    <h1>Coaching Corner</h1>
+    <p>Practical, beginner-friendly coaching tips for every Little Athletics event. Pick a category and event below to get advice you can use at your next training session.</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- EVENT SELECTOR -->
+  <div class="selector-section">
+    <div class="selector-row">
+      <div class="selector-group">
+        <label for="category-select">Category</label>
+        <select id="category-select">
+          <option value="">Choose a category...</option>
+          <option value="sprints">Sprints</option>
+          <option value="middle-distance">Middle Distance</option>
+          <option value="hurdles">Hurdles</option>
+          <option value="jumps">Jumps</option>
+          <option value="throws">Throws</option>
+        </select>
+      </div>
+      <div class="selector-group">
+        <label for="event-select">Event</label>
+        <select id="event-select" disabled>
+          <option value="">Choose an event...</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT AREA -->
+  <div class="content-area">
+
+    <!-- Placeholder -->
+    <div class="placeholder-msg" id="placeholder">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+      <p>Select a category and event above to see coaching tips.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SPRINTS: 70m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-70m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="4" r="2"/><path d="M5 8h4l3 5"/><path d="m8 8-2 5"/><path d="m10 17-2 4"/><path d="m7 13-3 4"/><path d="M14 4l3 3-2 4 3 4"/><path d="m18 15 2 4"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>70 Metres</h2>
+          <span class="event-meta">Sprints &middot; Ages U6 to U8</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>At this age, the 70m is about fun and building basic running form. Don't overcomplicate it. Children should feel confident sprinting in a straight line and responding to a starting command.</p>
+        <ul>
+          <li>Run tall with eyes looking ahead, not down at the ground</li>
+          <li>Pump arms forward and back (not across the body)</li>
+          <li>Stay in their lane the whole way</li>
+          <li>React to "On your marks... Set... Go!" or the starter's clap</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Warm-Up Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Traffic Lights</div>
+          <p>Children jog around a marked area. Call out "Green" (run), "Orange" (jog slowly), "Red" (stop and freeze). This teaches speed changes and listening to commands.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">High Knees on the Spot</div>
+          <p>Stand on the spot and march, lifting knees up to hip height. Keep it fun by counting together or doing it to a rhythm. Builds the habit of lifting knees while running.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Arm Swing Practice</div>
+          <p>Sitting down with legs out straight, practise pumping arms forward and back like a train. This isolates arm action so they can feel the right movement without worrying about legs.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>At U6-U8 level, the most important thing is that kids enjoy sprinting. Praise effort over results. Use relay games and races against themselves (beating their own time) rather than always racing each other.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Looking sideways at other runners instead of straight ahead</li>
+          <li>Arms swinging across the body (wastes energy and causes wobble)</li>
+          <li>Starting before the command (teach patience at the start line)</li>
+          <li>Slowing down before the finish line (encourage running through it)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SPRINTS: 100m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-100m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="4" r="2"/><path d="M5 8h4l3 5"/><path d="m8 8-2 5"/><path d="m10 17-2 4"/><path d="m7 13-3 4"/><path d="M14 4l3 3-2 4 3 4"/><path d="m18 15 2 4"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>100 Metres</h2>
+          <span class="event-meta">Sprints &middot; Ages U8+</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>The 100m has three phases: the start and drive, acceleration to top speed, and maintaining that speed through the finish. For younger athletes, keep it simple and focus on one phase at a time across your training sessions.</p>
+        <ul>
+          <li><strong>Start:</strong> A strong push off the front foot with a slight forward lean</li>
+          <li><strong>Drive phase:</strong> Gradually rise from the lean over the first 20-30m</li>
+          <li><strong>Top speed:</strong> Run tall, fast arms, relaxed face and shoulders</li>
+          <li><strong>Finish:</strong> Lean through the line, never slow down early</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Standing Start Practice</div>
+          <p>One foot forward, opposite arm forward. On "Go!", drive out with a low body angle for 10-15m then pull up. Repeat 4-6 times. Focus on a powerful first few steps.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">A-Skips</div>
+          <p>Skip forward lifting the knee high on each skip. Keep the supporting leg straight and land on the ball of the foot. Do 2-3 runs over 30m. Builds knee lift and rhythm.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Flying 30s</div>
+          <p>Jog for 20m to build speed, then sprint at full effort for 30m, then gradually slow down. This practises hitting top speed without the stress of a full 100m effort.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>A relaxed sprinter is a fast sprinter. If you see clenched fists, scrunched faces, or raised shoulders, remind them to "run relaxed." A good cue is to imagine holding a crisp in each hand without breaking it.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Popping upright immediately from the start (should gradually rise)</li>
+          <li>Over-striding, reaching out with the front foot instead of driving underneath</li>
+          <li>Tension in the upper body, especially shoulders and hands</li>
+          <li>Easing off in the last 10-15m (coach them to "run past the line")</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SPRINTS: 200m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-200m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="4" r="2"/><path d="M5 8h4l3 5"/><path d="m8 8-2 5"/><path d="m10 17-2 4"/><path d="m7 13-3 4"/><path d="M14 4l3 3-2 4 3 4"/><path d="m18 15 2 4"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>200 Metres</h2>
+          <span class="event-meta">Sprints &middot; Ages U8+</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>The 200m adds a bend to the sprint. The biggest skill for young athletes is learning to run the bend smoothly and then accelerating off it into the straight. Teach them it's not just a "long 100m" -- they need to manage their effort slightly differently.</p>
+        <ul>
+          <li><strong>Bend running:</strong> Lean gently into the curve, left arm drives slightly across the body</li>
+          <li><strong>Stay in lane:</strong> Focus eyes on where the lane curves ahead, not across the track</li>
+          <li><strong>Transition:</strong> As you hit the straight, open up your stride and push</li>
+          <li><strong>Finish strong:</strong> The last 50m is where races are won -- maintain form</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Bend Running Practice</div>
+          <p>Set up cones in a gentle curve. Have athletes run the bend at 80% effort, focusing on leaning in and staying smooth. Do 4-6 reps. Progress to full-effort bend runs.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">In-and-Out 200s</div>
+          <p>Run the bend at 80% effort, then "switch on" to 100% as they enter the straight. This teaches them to conserve on the bend and accelerate on the straight.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>Young athletes often go out too hard on the bend and then tie up badly in the last 50m. Teach them that the bend is for "setting up" and the straight is for "letting go." A controlled bend leads to a faster finish.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Running wide on the bend (wasting distance)</li>
+          <li>Going out at 100% effort and fading badly</li>
+          <li>Stiff upper body on the bend -- they need to stay loose</li>
+          <li>Stepping on the inside line of the lane</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SPRINTS: 400m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-400m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="4" r="2"/><path d="M5 8h4l3 5"/><path d="m8 8-2 5"/><path d="m10 17-2 4"/><path d="m7 13-3 4"/><path d="M14 4l3 3-2 4 3 4"/><path d="m18 15 2 4"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>400 Metres</h2>
+          <span class="event-meta">Sprints &middot; Ages U9+</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>The 400m is the toughest sprint -- it requires speed and the ability to maintain it when fatigue sets in. For young athletes, the most important lesson is pacing. Going out too fast is the number one mistake at every level.</p>
+        <ul>
+          <li><strong>First 100m:</strong> Fast but controlled start -- about 90% effort</li>
+          <li><strong>100-200m:</strong> Settle into a strong, rhythmic stride on the back straight</li>
+          <li><strong>200-300m:</strong> This is where races are lost -- maintain form and effort</li>
+          <li><strong>Last 100m:</strong> Drive the arms, stay tall, fight through the fatigue</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Split 200s</div>
+          <p>Run 2 x 200m with 2 minutes rest. Aim for both to be within 1-2 seconds of each other. Teaches even pacing rather than going out too hard.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">300m Time Trial</div>
+          <p>Run a 300m at 400m race pace. This builds the specific endurance needed for the last 100m of a 400m without the full race stress.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>Use the "conversation test" in training: if an athlete can't say a short sentence after a 400m training rep, they've gone too hard for a training run. Save the all-out efforts for race day.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Going out at 100% and dying in the last 150m</li>
+          <li>Form breaking down when tired -- hunched shoulders, short choppy steps</li>
+          <li>Not running the bends properly (running wide wastes precious energy)</li>
+          <li>Giving up mentally when it gets tough on the back straight</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- MIDDLE DISTANCE: 800m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-800m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>800 Metres</h2>
+          <span class="event-meta">Middle Distance &middot; Ages U9+</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>The 800m is two laps of the track and sits right on the border between sprinting and distance running. The key for young athletes is learning that the first lap should feel almost easy so they have enough left for the second lap.</p>
+        <ul>
+          <li><strong>First 200m:</strong> Get into a good position but don't sprint -- controlled effort</li>
+          <li><strong>200-400m:</strong> Settle into rhythm, relax the shoulders, breathe steadily</li>
+          <li><strong>400-600m:</strong> Maintain the same effort -- this is the hardest part mentally</li>
+          <li><strong>Last 200m:</strong> Time to kick -- increase the arm drive and push for the finish</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Even Pace 400s</div>
+          <p>Run 3 x 400m with 2-3 minutes rest. Each 400m should be within 2 seconds of the others. Use a stopwatch to help athletes learn what their target pace feels like.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Kick Practice</div>
+          <p>Jog 600m at easy pace, then sprint the last 200m. This teaches the "kick" finish that's so important in 800m racing. Repeat 2-3 times with full recovery.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>A good rule of thumb for young runners: the second lap should be no more than 5 seconds slower than the first. If it's 10+ seconds slower, they went out too hard. Help them learn pacing with regular timed runs.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Sprinting the first 200m with the pack and paying for it later</li>
+          <li>Not settling into a rhythm after the first bend</li>
+          <li>Short, shallow breathing -- encourage deep belly breaths</li>
+          <li>Dropping the head and hunching when tired (cue: "eyes up, chest up")</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- MIDDLE DISTANCE: 1500m -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-1500m">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>1500 Metres</h2>
+          <span class="event-meta">Middle Distance &middot; Ages U11+</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>The 1500m (roughly a mile) rewards patience and consistent pacing more than any other event. Young athletes need to resist the urge to go with every surge in the pack and instead run their own race at an even pace.</p>
+        <ul>
+          <li><strong>First lap:</strong> Find a comfortable position, settle into target pace</li>
+          <li><strong>Middle laps:</strong> Relax, run efficiently, stay tucked in behind other runners to save energy</li>
+          <li><strong>Bell lap (last 400m):</strong> Move to the outside if boxed in, prepare to push</li>
+          <li><strong>Last 200m:</strong> Use everything left -- lift the knees, drive the arms, sprint home</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Tempo Runs</div>
+          <p>Run 800m-1000m at a pace that feels "comfortably hard." Not all-out, but not easy. This builds the aerobic engine that powers a good 1500m. Do 2-3 reps with 3 minutes rest.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Fartlek (Speed Play)</div>
+          <p>During an easy 10-15 minute jog, alternate between 30 seconds fast and 60 seconds easy. This builds the ability to change pace mid-race, which is essential in the 1500m.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>For younger athletes (U11-U13), focus on building enjoyment of running rather than hammering pace work. Easy runs, games, and cross country over varied terrain will build a far better base than doing laps of the track.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Going out too fast in the first 400m and paying for it over the last two laps</li>
+          <li>Running wide around every bend (wasting metres that add up over nearly four laps)</li>
+          <li>Not practising the kick -- many young runners don't know how to change gears</li>
+          <li>Forgetting to breathe rhythmically (try linking breathing to foot strikes: in for 3 steps, out for 2)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- HURDLES -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-hurdles">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="20" height="2" rx="1"/><line x1="4" y1="14" x2="4" y2="20"/><line x1="20" y1="14" x2="20" y2="20"/><circle cx="10" cy="5" r="2"/><path d="M8 9l2 3 4-2"/><path d="m10 12-2 4"/><path d="m14 10 2 4"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>Hurdles</h2>
+          <span class="event-meta">60m to 300m &middot; All ages (heights vary by age group)</span>
+        </div>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Hurdling is sprinting with obstacles in the way -- not jumping over barriers. The goal is to lose as little speed as possible. For beginners, start with very low hurdles (or even flat markers on the ground) and build confidence before adding height.</p>
+        <ul>
+          <li><strong>Lead leg:</strong> Drive the knee up and forward, then snap the foot down quickly</li>
+          <li><strong>Trail leg:</strong> Pull it through sideways (knee out to the side, not behind)</li>
+          <li><strong>Arms:</strong> Opposite arm to lead leg reaches forward for balance</li>
+          <li><strong>Rhythm:</strong> Aim for the same number of steps between each hurdle (typically 3 strides for older, 5 for younger)</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Walk-Over Drill</div>
+          <p>Set hurdles at the lowest height. Walk over them slowly, practising the lead leg action (knee up, foot down) and trail leg (knee out to the side). This removes the fear factor and builds correct technique.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">One-Step Hurdling</div>
+          <p>Set hurdles very close together (about 2m apart) at low height. Athletes take one step between each hurdle, focusing on quick lead leg and trail leg action. Builds rhythm and speed over the hurdle.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Trail Leg Wall Drill</div>
+          <p>Stand side-on to a wall or fence. Practise pulling the trail leg through with the knee high and out to the side. Do 10 reps each leg. This isolates the most difficult part of hurdling technique.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>Never force a child over a hurdle they're scared of. Start with a line on the ground, then a flat cone, then a low hurdle. Build confidence gradually. Fear of the hurdle causes more technique problems than anything else.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes to Watch For</h3>
+        <ul>
+          <li>Jumping up instead of driving forward over the hurdle</li>
+          <li>Trail leg dragging behind instead of pulling through sideways</li>
+          <li>Stuttering or chopping steps before the hurdle (usually means the spacing needs adjusting)</li>
+          <li>Landing heavily on the heel instead of the ball of the foot</li>
+          <li>Looking down at the hurdle instead of ahead to the next one</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- JUMPS (grouped) -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-jumps">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="4" r="2"/><path d="M4 8l4 2 4-2"/><path d="m8 10 1 5"/><path d="m9 15 4 3"/><path d="m9 15-4 4"/><path d="M16 18h6"/><path d="M16 18l-2 2"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>Jumping Events</h2>
+          <span class="event-meta">Long Jump, Triple Jump &amp; High Jump</span>
+        </div>
+      </div>
+
+      <!-- ── LONG JUMP ── -->
+      <h3 class="sub-event">Long Jump</h3>
+      <p class="sub-event-meta">All ages &middot; Take-off zone for U7-U10, board for U11+</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Long jump has four phases: the run-up, the take-off, the flight, and the landing. For younger athletes (U7-U10), they use a take-off zone (1m area) rather than a board, so accuracy isn't as critical. Focus on speed and a strong take-off.</p>
+        <ul>
+          <li><strong>Run-up:</strong> Build speed gradually -- the last few strides should be the fastest</li>
+          <li><strong>Take-off:</strong> Plant the take-off foot flat and drive the opposite knee up hard</li>
+          <li><strong>Flight:</strong> Keep the chest up and reach forward with both arms</li>
+          <li><strong>Landing:</strong> Reach feet forward, swing arms back, and sit into the sand</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Standing Long Jumps</div>
+          <p>From a standing position, swing arms back then forward and jump as far as possible into the pit. Focus on driving both feet forward for the landing. Great for building explosive power and correct landing technique.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">3-Step Approach</div>
+          <p>Take just 3 running steps before jumping. This lets athletes focus on the take-off and landing without worrying about a long run-up. Gradually increase to 5, 7, then full run-up.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Bounding</div>
+          <p>Run and exaggerate each stride into a long, leaping bound. Do 6-8 bounds over 30m. Builds the power and coordination needed for the take-off.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>Speed is the biggest factor in long jump distance. A faster, confident run-up will almost always produce a longer jump. Don't sacrifice run-up speed by making athletes worry too much about hitting the board perfectly -- especially at younger ages where they use a take-off zone.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Slowing down on approach -- the run-up should accelerate, not decelerate</li>
+          <li>Taking off from the wrong foot (help each child find their natural take-off foot)</li>
+          <li>Jumping "up" instead of "out" -- they should drive forward, not skyward</li>
+          <li>Landing with feet underneath or behind them instead of reaching forward</li>
+          <li>Falling backwards in the pit after landing (coach them to push hips forward on landing)</li>
+        </ul>
+      </div>
+
+      <!-- ── TRIPLE JUMP ── -->
+      <h3 class="sub-event">Triple Jump</h3>
+      <p class="sub-event-meta">Ages U11+ &middot; Hop, Step, Jump pattern</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Triple jump follows a "hop, step, jump" pattern. The athlete takes off on one foot (hop), lands on the same foot, steps onto the other foot, then jumps into the pit. The rhythm is everything -- teach the pattern before worrying about distance.</p>
+        <ul>
+          <li><strong>Hop:</strong> Take off from one foot and land on the SAME foot. Keep it flat and active.</li>
+          <li><strong>Step:</strong> From that landing, drive forward onto the OTHER foot. This is the longest phase.</li>
+          <li><strong>Jump:</strong> From the step landing, jump into the pit with both feet reaching forward.</li>
+          <li><strong>Rhythm:</strong> "Same, other, both" -- say it aloud to help athletes remember the pattern.</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Standing Hop-Step-Jump</div>
+          <p>From standing, do the full triple jump pattern at low intensity. Mark where each phase lands with a cone. This teaches the rhythm without the complexity of a run-up.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Hoop Drill</div>
+          <p>Place hoops on the ground in the hop-step-jump pattern. Athletes step through them, landing in each hoop in sequence. Gradually increase the spacing as they improve.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>The most common problem in triple jump is a massive first hop that leaves nothing for the step and jump. Aim for roughly equal distances across all three phases. A good ratio to target is around 35% hop, 30% step, 35% jump.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Landing on the wrong foot during the hop (should land on the same foot they took off from)</li>
+          <li>Putting too much into the hop and having nothing left for step and jump</li>
+          <li>Stopping or stuttering between phases instead of flowing continuously</li>
+          <li>Jumping too high instead of driving forward in each phase</li>
+        </ul>
+      </div>
+
+      <!-- ── HIGH JUMP ── -->
+      <h3 class="sub-event">High Jump</h3>
+      <p class="sub-event-meta">All ages &middot; Scissors for U6-U10, Fosbury Flop for U11+</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Younger athletes (U6-U10) use the scissors technique, where they kick the lead leg over the bar and follow with the trail leg. From U11 onwards, athletes progress to the Fosbury Flop (going over backwards). Both techniques start with a curved approach run.</p>
+
+        <p><strong>Scissors technique (U6-U10):</strong></p>
+        <ul>
+          <li>Approach from about 30-45 degrees to the bar</li>
+          <li>Take off from the foot furthest from the bar</li>
+          <li>Kick the inside leg up and over the bar</li>
+          <li>Follow with the trail leg and land on feet on the other side</li>
+        </ul>
+
+        <p style="margin-top: 1.25rem;"><strong>Fosbury Flop (U11+):</strong></p>
+        <ul>
+          <li>Curved approach run of 5-8 strides, running in a "J" shape</li>
+          <li>Take off from the foot furthest from the bar (outside foot)</li>
+          <li>Drive the inside knee up, turn the back to the bar</li>
+          <li>Arch over the bar, then tuck chin and lift hips</li>
+          <li>Land on upper back/shoulders on the mat</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Curved Run Practice</div>
+          <p>Set out 5 cones in a "J" curve. Have athletes run the curve at increasing speed, focusing on leaning into the curve and keeping their head up. The curve creates the rotation needed for the flop.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Back Landing Drill</div>
+          <p>Standing with back to the mat, jump backwards and land on upper back/shoulders. This builds confidence in going backwards onto the mat. Progress to a one-step approach, then two steps.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Scissors Over Elastic</div>
+          <p>Use a stretchy elastic band instead of a rigid bar for beginners. Set it low. This removes the fear of hitting a hard bar and lets athletes practise freely.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>The approach run is 80% of a good high jump. If the approach is rushed, too straight, or inconsistent, the jump will suffer every time. Spend most of your coaching time on the run-up, not the bar clearance.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Running straight at the bar instead of on a curve</li>
+          <li>Taking off from the wrong foot (should be the outside foot, furthest from the bar)</li>
+          <li>Diving head-first over the bar instead of driving the knee up</li>
+          <li>Not lifting the hips at the peak -- the hips are usually what knocks the bar off</li>
+          <li>Inconsistent run-up -- starting from a different spot each time</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- THROWS (grouped) -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="event-detail" id="event-throws">
+      <div class="event-header">
+        <div class="event-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="6" r="3"/><circle cx="8" cy="8" r="2"/><path d="M6 12l2-2 3 1"/><path d="m8 14-2 6"/><path d="m11 11 2 5"/></svg>
+        </div>
+        <div class="event-title-group">
+          <h2>Throwing Events</h2>
+          <span class="event-meta">Shot Put, Discus &amp; Javelin</span>
+        </div>
+      </div>
+
+      <!-- SAFETY NOTICE -->
+      <div class="tip-box" style="margin-bottom: 2rem;">
+        <div class="tip-label">Safety First</div>
+        <p>All throwing events require strict safety rules. Nobody enters the landing area until the coach says so. Nobody picks up an implement that isn't theirs. All athletes put down (never throw down) implements when they're done. Establish these habits from the very first session.</p>
+      </div>
+
+      <!-- ── SHOT PUT ── -->
+      <h3 class="sub-event">Shot Put</h3>
+      <p class="sub-event-meta">All ages &middot; Weights vary: 1kg (U6) to 4kg+ (U15+)</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Shot put is a pushing event, not a throwing event. The shot is pushed from the neck/chin area using the legs and body rotation. Children must understand they can never throw the shot like a ball.</p>
+        <ul>
+          <li><strong>Grip:</strong> Rest the shot on the base of the fingers (not the palm), tucked under the chin against the neck</li>
+          <li><strong>Stance:</strong> Stand sideways to the throwing direction, feet shoulder-width apart</li>
+          <li><strong>Push:</strong> Drive from the back leg, rotate the hips and shoulders, then extend the arm to push the shot away</li>
+          <li><strong>Release:</strong> The shot leaves from beside the chin at about 40-45 degrees</li>
+          <li><strong>Follow through:</strong> Reverse feet to stay in the circle after release</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Two-Handed Chest Pass</div>
+          <p>Using a light medicine ball, face the throwing direction and push from the chest as far as possible. This teaches the pushing action and the use of legs without worrying about the grip or rotation.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Standing Put</div>
+          <p>Stand sideways, shot under chin. Without any stepping or sliding, push the shot using only hip rotation and arm extension. Repeat 6-8 times. Builds the core movement pattern.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Hip Rotation Drill</div>
+          <p>Stand sideways with hands on hips. Practise rotating the hips to face the throwing direction while keeping the shoulders back. Then let the shoulders follow. This sequence (hips then shoulders) is the engine of shot put.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>The most common beginner mistake is throwing the shot like a ball from away from the body. Keep reminding athletes: "chin, clean, push." The shot starts at the chin, the push is clean (straight out), and the action is a push, not a throw.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Throwing the shot like a ball (it must be pushed from the neck)</li>
+          <li>Holding the shot in the palm instead of on the fingers</li>
+          <li>Shot starting away from the neck (it should be tucked right in under the chin)</li>
+          <li>Using only the arm with no leg drive or hip rotation</li>
+          <li>Releasing too low -- the shot should leave at about 40-45 degrees upward</li>
+        </ul>
+      </div>
+
+      <!-- ── DISCUS ── -->
+      <h3 class="sub-event">Discus</h3>
+      <p class="sub-event-meta">All ages &middot; Rubber disc U6-U12, steel rim U13+</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Discus is about generating rotational speed and releasing the disc at the right angle. For beginners, start with the standing throw before progressing to a turn. Younger athletes use a soft rubber discus which is safer and easier to grip.</p>
+        <ul>
+          <li><strong>Grip:</strong> Fingers spread over the rim, curled over the edge. The discus rests on the finger pads, not in the palm.</li>
+          <li><strong>Standing throw:</strong> Stand sideways, arm extended behind. Rotate hips, then shoulders, and release the discus off the index finger.</li>
+          <li><strong>Release:</strong> The discus should roll off the index finger with a clockwise spin (for right-handers) at about shoulder height.</li>
+          <li><strong>Angle:</strong> Release at about 35 degrees for best distance.</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Bowling the Discus</div>
+          <p>Hold the discus at your side and roll it along the ground like a bowling ball. The discus should roll in a straight line. This teaches the correct release off the index finger with spin.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Standing Throw into a Net</div>
+          <p>Stand sideways, extend the throwing arm back, and practise the hip-then-shoulder rotation, releasing into a net or fence. Removes distance pressure so athletes focus purely on technique.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Paper Plate Throws</div>
+          <p>Use paper plates as pretend discuses. They're light and safe, so athletes can practise indoors or in close quarters. Focus on the spinning release off the index finger.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>The discus should spin off the index finger like spinning a top. If it wobbles or flutters, the release isn't right. Have athletes practise spinning the discus into the air straight up above them -- it should spin flat and come straight back down.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Gripping the discus in the palm instead of on the finger pads</li>
+          <li>Using only the arm -- the power should come from the hips and core</li>
+          <li>Releasing the discus with no spin (it should roll cleanly off the index finger)</li>
+          <li>Releasing too early (goes right for a right-hander) or too late (goes left)</li>
+          <li>Stepping out of the circle before the throw has landed</li>
+        </ul>
+      </div>
+
+      <!-- ── JAVELIN ── -->
+      <h3 class="sub-event">Javelin</h3>
+      <p class="sub-event-meta">Turbo Jav (foam) for U8-U10 &middot; Standard javelin U11+</p>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/></svg> What to Focus On</h3>
+        <p>Younger athletes start with a foam "Turbo Jav" before progressing to a standard javelin from U11. The javelin is thrown overarm (like a cricket ball or football pass) -- never round-arm or underarm. The key is throwing "through the point."</p>
+        <ul>
+          <li><strong>Grip:</strong> Hold at the cord grip with thumb and finger behind the binding. The "V" grip (between index and middle finger) is good for beginners.</li>
+          <li><strong>Carry:</strong> Hold the javelin at head height, tip pointing forward and slightly up. Keep the elbow high.</li>
+          <li><strong>Throw:</strong> Draw the javelin back with a straight arm, plant the front foot, and throw "over the top" with the elbow leading.</li>
+          <li><strong>Follow through:</strong> The throwing hand finishes by the opposite hip.</li>
+        </ul>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Drills</h3>
+        <div class="drill-card">
+          <div class="drill-name">Ball Throwing</div>
+          <p>Use a tennis ball or cricket ball. Practise the overarm throwing action -- step forward with the opposite foot and throw "over the top" with a high elbow. Do 10-15 throws focusing on throwing straight.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">Standing Javelin Throw</div>
+          <p>Stand side-on with the javelin drawn back. Without any run-up steps, throw the javelin using hip rotation and the overarm action. Repeat 6-8 times. Focus on the point landing first.</p>
+        </div>
+        <div class="drill-card">
+          <div class="drill-name">3-Step Approach</div>
+          <p>Walk through 3 approach steps: left-right-left (for right-handers), planting the left foot firmly on the last step and throwing. This builds the basic approach rhythm before adding speed.</p>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">Coach's Tip</div>
+        <p>The javelin must land point-first to count. If the javelin is landing flat or tail-first, the release angle is too low or the athlete is "pushing" it rather than throwing through the point. Cue them to "throw through the tip" with a high elbow.</p>
+      </div>
+
+      <div class="coaching-block">
+        <h3><svg class="block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Common Mistakes</h3>
+        <ul>
+          <li>Throwing round-arm (like a frisbee) instead of overarm -- this is dangerous and illegal</li>
+          <li>Dropping the elbow below shoulder height during the throw</li>
+          <li>Carrying the javelin too low during the approach</li>
+          <li>Running past the foul line -- teach them to stop well behind it</li>
+          <li>Javelin landing flat or tail-first (release angle and technique need work)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /content-area -->
+
+  <footer>
+    &copy; 2026 Leo Reeve &nbsp;&middot;&nbsp; <a href="https://leoreeve.com">leoreeve.com</a>
+  </footer>
+
+  <script>
+    // ── Event data ──
+    const events = {
+      sprints: [
+        { value: '70m', label: '70 Metres' },
+        { value: '100m', label: '100 Metres' },
+        { value: '200m', label: '200 Metres' },
+        { value: '400m', label: '400 Metres' }
+      ],
+      'middle-distance': [
+        { value: '800m', label: '800 Metres' },
+        { value: '1500m', label: '1500 Metres' }
+      ],
+      hurdles: [
+        { value: 'hurdles', label: 'Hurdles (all distances)' }
+      ],
+      jumps: [
+        { value: 'jumps', label: 'Long Jump, Triple Jump & High Jump' }
+      ],
+      throws: [
+        { value: 'throws', label: 'Shot Put, Discus & Javelin' }
+      ]
+    };
+
+    const catSelect = document.getElementById('category-select');
+    const evtSelect = document.getElementById('event-select');
+    const placeholder = document.getElementById('placeholder');
+
+    catSelect.addEventListener('change', function () {
+      const cat = this.value;
+      evtSelect.innerHTML = '<option value="">Choose an event...</option>';
+
+      if (cat && events[cat]) {
+        events[cat].forEach(function (e) {
+          const opt = document.createElement('option');
+          opt.value = e.value;
+          opt.textContent = e.label;
+          evtSelect.appendChild(opt);
+        });
+        evtSelect.disabled = false;
+
+        // If only one event in category, auto-select it
+        if (events[cat].length === 1) {
+          evtSelect.value = events[cat][0].value;
+          evtSelect.dispatchEvent(new Event('change'));
+        }
+      } else {
+        evtSelect.disabled = true;
+        document.querySelectorAll('.event-detail').forEach(function (el) {
+          el.classList.remove('active');
+        });
+        placeholder.style.display = '';
+      }
+    });
+
+    evtSelect.addEventListener('change', function () {
+      const val = this.value;
+
+      // Hide all events
+      document.querySelectorAll('.event-detail').forEach(function (el) {
+        el.classList.remove('active');
+      });
+
+      if (val) {
+        placeholder.style.display = 'none';
+        var target = document.getElementById('event-' + val);
+        if (target) {
+          target.classList.add('active');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        placeholder.style.display = '';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,1 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leo Reeve – Runner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --cream:   #faf6f0;
+      --sand:    #e8ddd0;
+      --terra:   #b5703a;
+      --rust:    #8c4a22;
+      --bark:    #3b2a1a;
+      --moss:    #6b7c5c;
+      --text:    #2e1f0e;
+      --muted:   #7a6555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--sand);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--bark);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--terra); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 2rem 5rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--terra);
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 4.5rem 2rem;
+    }
+    .section-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--bark);
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+    p { color: var(--muted); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); }
+    #about .section-inner { border-top: 1px solid var(--sand); padding-top: 4.5rem; }
+
+    /* ── RESULTS ── */
+    #results { background: var(--sand); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .result-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      border-left: 4px solid var(--terra);
+    }
+    .result-card .event {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--bark);
+      margin-bottom: 0.3rem;
+    }
+    .result-card .position {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--terra);
+      color: #fff;
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+    .result-card .position.gold {
+      background: #8a6c1c;
+    }
+    .result-card .detail {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── CONNECT ── */
+    #connect { background: var(--cream); }
+    #connect .section-inner { border-top: 1px solid var(--sand); padding-top: 4.5rem; }
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .link-btn.primary {
+      background: var(--terra);
+      color: #fff;
+    }
+    .link-btn.primary:hover { background: var(--rust); }
+    .link-btn.secondary {
+      background: transparent;
+      color: var(--terra);
+      border: 1.5px solid var(--terra);
+    }
+    .link-btn.secondary:hover { background: var(--sand); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bark);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      nav ul { gap: 1.2rem; }
+      .hero { padding: 4rem 1.25rem 3.5rem; }
+      section { padding: 3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="#">Leo Reeve</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">T37 Para Athlete &nbsp;&middot;&nbsp; Middle Distance &amp; Cross Country</p>
+    <h1>Leo Reeve</h1>
+    <p>A runner's story — chasing times, racing trails, and finding something worth working for on every start line.</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">About</p>
+      <h2>A runner at heart</h2>
+      <p>Leo Reeve is a competitive middle distance and cross country runner with a passion for racing that goes beyond the clock. Whether it's the controlled burn of an 800m or the mud and hills of a cross country course, Leo brings the same focus and commitment to every race.</p>
+      <p>A classified T37 para athlete from Victoria, Leo holds four Australian records across the 800m and 1500m in his class, at both Under 17 and Under 20 level. He continues to train and compete with a drive to keep improving season on season.</p>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <div class="section-inner">
+      <p class="section-label">Race Results</p>
+      <h2>Notable performances</h2>
+      <!-- 2025 National Championships -->
+      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2025 National Championships &nbsp;&middot;&nbsp; T37 Under 20</p>
+      <div class="results-grid" style="margin-bottom:2.5rem;">
+
+        <div class="result-card">
+          <div class="event">800m T37</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">Australian Athletics Championships &nbsp;&middot;&nbsp; Perth, WA &nbsp;&middot;&nbsp; 2025</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">National Cross Country</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">Australian Cross Country Championships &nbsp;&middot;&nbsp; Ballarat, VIC &nbsp;&middot;&nbsp; 2025</p>
+        </div>
+
+      </div>
+
+      <!-- 2024 National Championships -->
+      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2024 National Championships &nbsp;&middot;&nbsp; T37 Under 20</p>
+      <div class="results-grid" style="margin-bottom:2.5rem;">
+
+        <div class="result-card">
+          <div class="event">800m T37</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">2:12.11 &nbsp;&middot;&nbsp; Australian Athletics Championships &nbsp;&middot;&nbsp; Mile End, SA &nbsp;&middot;&nbsp; 13 Apr 2024</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">1500m T37</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">4:26.65 &nbsp;&middot;&nbsp; Australian Athletics Championships &nbsp;&middot;&nbsp; Mile End, SA &nbsp;&middot;&nbsp; 12 Apr 2024</p>
+        </div>
+
+      </div>
+
+      <!-- 2023 Junior Championships & Cross Country -->
+      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2023 National & Junior Championships &nbsp;&middot;&nbsp; T37 Under 17</p>
+      <div class="results-grid" style="margin-bottom:2.5rem;">
+
+        <div class="result-card">
+          <div class="event">1500m T37</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">4:53.47 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">3km Cross Country T37</div>
+          <div class="position gold">1st Place</div>
+          <p class="detail">10:29 &nbsp;&middot;&nbsp; Australian Cross Country Championships &nbsp;&middot;&nbsp; Canberra, ACT &nbsp;&middot;&nbsp; 26 Aug 2023</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">800m T37</div>
+          <div class="position">4th Place</div>
+          <p class="detail">2:22.13 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">400m T37</div>
+          <div class="position">3rd Place</div>
+          <p class="detail">64.28 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
+        </div>
+
+      </div>
+
+      <!-- Australian Records -->
+      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">Australian Records &nbsp;&middot;&nbsp; T37 class</p>
+      <div class="results-grid">
+
+        <div class="result-card">
+          <div class="event">800m T37 &ndash; Under 20</div>
+          <div class="position">Australian Record</div>
+          <p class="detail">2:09.87 &nbsp;&middot;&nbsp; Perth, WA &nbsp;&middot;&nbsp; 12 Apr 2025</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">1500m T37 &ndash; Under 20</div>
+          <div class="position">Australian Record</div>
+          <p class="detail">4:24.84 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 21 Feb 2025</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">800m T37 &ndash; Under 17</div>
+          <div class="position">Australian Record</div>
+          <p class="detail">2:14.03 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 4 Nov 2023</p>
+        </div>
+
+        <div class="result-card">
+          <div class="event">1500m T37 &ndash; Under 17</div>
+          <div class="position">Australian Record</div>
+          <p class="detail">4:53.00 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 24 Feb 2023</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <div class="section-inner">
+      <p class="section-label">Connect</p>
+      <h2>Get in touch</h2>
+      <p>Follow Leo's running journey or get in touch via the links below.</p>
+      <div class="links-row">
+        <a class="link-btn primary" href="https://www.linkedin.com/in/leo-reeve-15ba2639a/" target="_blank" rel="noopener">
+          <!-- LinkedIn icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+          LinkedIn
+        </a>
+        <!-- Email button — address is assembled by JS so it doesn't appear in plain text for scrapers -->
+        <a class="link-btn secondary" id="email-btn" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email Leo
+        </a>
+        <script>
+          // EDIT the two parts below to set Leo's real email address.
+          // Splitting it like this keeps it out of the raw HTML so bots can't scrape it.
+          (function () {
+            var u = 'leo';          // ← part before the @
+            var d = 'leoreeve.com'; // ← domain
+            var btn = document.getElementById('email-btn');
+            btn.href = 'mailto:' + u + '\x40' + d;
+          })();
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Leo Reeve &nbsp;&middot;&nbsp; <a href="https://leoreeve.com">leoreeve.com</a>
+  </footer>
+
+</body>
+</html>
