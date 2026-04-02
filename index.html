@@ -1,400 +1,782 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leo Reeve – Runner</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Leo Reeve is a T37 para-athlete from Victoria, Australia. Four-time Australian record holder in middle distance and cross country running. 18 years old. LA 2028 Paralympics focused.">
+    <meta name="theme-color" content="#b5703a">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Leo Reeve | T37 Para-Athlete & Australian Record Holder">
+    <meta property="og:description" content="Four-time Australian record holder. T37 para-athlete. 18 years old. Chasing LA 2028.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leoreeve.com">
+    <meta property="og:image" content="https://leoreeve.com/og-image.png">
+    
+    <title>Leo Reeve | T37 Para-Athlete & Australian Record Holder</title>
+    
+    <!-- Favicon (inline SVG) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23b5703a'/%3E%3Ctext x='50' y='65' font-size='60' font-weight='bold' text-anchor='middle' fill='%23faf6f0' font-family='serif'%3EL%3C/text%3E%3C/svg%3E">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --cream:   #faf6f0;
-      --sand:    #e8ddd0;
-      --terra:   #b5703a;
-      --rust:    #8c4a22;
-      --bark:    #3b2a1a;
-      --moss:    #6b7c5c;
-      --text:    #2e1f0e;
-      --muted:   #7a6555;
-    }
+        :root {
+            --cream: #faf6f0;
+            --sand: #e8ddd0;
+            --terra: #b5703a;
+            --rust: #8c4a22;
+            --bark: #3b2a1a;
+            --moss: #6b7c5c;
+            --text: #2e1f0e;
+            --muted: #7a6555;
+            --gold: #d4a574;
+        }
 
-    html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background: var(--cream);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--cream);
-      border-bottom: 1px solid var(--sand);
-      padding: 0.85rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    nav .logo {
-      font-family: 'Lora', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--bark);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    nav ul a {
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    nav ul a:hover { color: var(--terra); }
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            line-height: 1.2;
+        }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 6rem 2rem 5rem;
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .hero .eyebrow {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--moss);
-      margin-bottom: 1.25rem;
-    }
-    .hero h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(2.6rem, 6vw, 4rem);
-      font-weight: 600;
-      color: var(--bark);
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
-    }
-    .hero-divider {
-      width: 48px;
-      height: 3px;
-      background: var(--terra);
-      border-radius: 2px;
-      margin: 0 auto;
-    }
+        h1 { font-size: 3.5rem; font-weight: 700; }
+        h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+        h4 { font-size: 1.2rem; font-weight: 600; }
+        p { margin-bottom: 1rem; }
 
-    /* ── SECTIONS ── */
-    section {
-      padding: 4.5rem 2rem;
-    }
-    .section-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--terra);
-      margin-bottom: 0.75rem;
-    }
-    h2 {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 600;
-      color: var(--bark);
-      line-height: 1.25;
-      margin-bottom: 1.5rem;
-    }
-    p { color: var(--muted); margin-bottom: 1rem; }
-    p:last-child { margin-bottom: 0; }
+        a {
+            color: var(--terra);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
-    /* ── ABOUT ── */
-    #about { background: var(--cream); }
-    #about .section-inner { border-top: 1px solid var(--sand); padding-top: 4.5rem; }
+        a:hover {
+            color: var(--rust);
+        }
 
-    /* ── RESULTS ── */
-    #results { background: var(--sand); }
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 0.5rem;
-    }
-    .result-card {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 1.4rem 1.6rem;
-      border-left: 4px solid var(--terra);
-    }
-    .result-card .event {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--bark);
-      margin-bottom: 0.3rem;
-    }
-    .result-card .position {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: var(--terra);
-      color: #fff;
-      border-radius: 4px;
-      padding: 0.2rem 0.6rem;
-      margin-bottom: 0.6rem;
-    }
-    .result-card .position.gold {
-      background: #8a6c1c;
-    }
-    .result-card .detail {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin: 0;
-    }
+        /* Navigation */
+        nav {
+            background-color: var(--cream);
+            border-bottom: 1px solid var(--sand);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* ── CONNECT ── */
-    #connect { background: var(--cream); }
-    #connect .section-inner { border-top: 1px solid var(--sand); padding-top: 4.5rem; }
-    .links-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      padding: 0.65rem 1.4rem;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .link-btn.primary {
-      background: var(--terra);
-      color: #fff;
-    }
-    .link-btn.primary:hover { background: var(--rust); }
-    .link-btn.secondary {
-      background: transparent;
-      color: var(--terra);
-      border: 1.5px solid var(--terra);
-    }
-    .link-btn.secondary:hover { background: var(--sand); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bark);
-      color: rgba(255,255,255,0.45);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.04em;
-    }
-    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
-    footer a:hover { color: #fff; }
+        .nav-logo {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 540px) {
-      nav ul { gap: 1.2rem; }
-      .hero { padding: 4rem 1.25rem 3.5rem; }
-      section { padding: 3rem 1.25rem; }
-    }
-  </style>
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--sand) 0%, var(--cream) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 4rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: var(--muted);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--bark);
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: -2rem auto 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: calc(var(--index) * 0.1s);
+        }
+
+        .stat-item:nth-child(1) { --index: 1; }
+        .stat-item:nth-child(2) { --index: 2; }
+        .stat-item:nth-child(3) { --index: 3; }
+        .stat-item:nth-child(4) { --index: 4; }
+
+        .stat-number {
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--terra);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--sand);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background-color: var(--cream);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .about h2 {
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .about p:first-child {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--rust);
+            margin-bottom: 2rem;
+        }
+
+        /* What's Next Section */
+        .whats-next {
+            padding: 5rem 2rem;
+            background-color: var(--sand);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .whats-next h2 {
+            color: var(--text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .whats-next-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .whats-next p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        /* Results Section */
+        .results {
+            padding: 5rem 2rem;
+            background-color: var(--cream);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .results h2 {
+            color: var(--text);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .results-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .results-category {
+            margin-bottom: 3rem;
+        }
+
+        .results-category h3 {
+            color: var(--text);
+            border-bottom: 2px solid var(--terra);
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .results-category.records h3 {
+            border-bottom-color: var(--gold);
+        }
+
+        .result-item {
+            background-color: var(--sand);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--terra);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .results-category.records .result-item {
+            border-left-color: var(--gold);
+            background: linear-gradient(90deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
+        }
+
+        .result-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(181, 112, 58, 0.15);
+        }
+
+        .result-time {
+            font-family: 'Lora', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--terra);
+            margin-bottom: 0.3rem;
+        }
+
+        .results-category.records .result-time {
+            color: var(--gold);
+        }
+
+        .result-event {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .result-date {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* Connect Section */
+        .connect {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--terra) 0%, var(--rust) 100%);
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .connect h2 {
+            color: var(--cream);
+            margin-bottom: 2rem;
+        }
+
+        .connect-intro {
+            font-size: 1.1rem;
+            color: var(--sand);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .connect-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .connect-link {
+            background-color: rgba(250, 246, 240, 0.15);
+            color: var(--cream);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .connect-link:hover {
+            background-color: var(--cream);
+            color: var(--terra);
+            border-color: var(--cream);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bark);
+            color: var(--sand);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--terra);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem;
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--cream);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                gap: 0;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--sand);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--sand);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about, .whats-next, .results, .connect {
+                padding: 3rem 1.5rem;
+            }
+
+            .about h2, .whats-next h2, .results h2, .connect h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .about p, .whats-next p {
+                font-size: 1rem;
+            }
+
+            .connect-links {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .connect-link {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .result-item {
+                padding: 1rem;
+            }
+
+            .result-time {
+                font-size: 1.1rem;
+            }
+
+            .connect-intro {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Leo Reeve</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="coaching.html">Coaching</a></li>
+                <li><a href="#connect">Follow</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <nav>
-    <a class="logo" href="#">Leo Reeve</a>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#results">Results</a></li>
-      <li><a href="coaching.html">Coaching</a></li>
-      <li><a href="#connect">Connect</a></li>
-    </ul>
-  </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Leo Reeve</h1>
+            <p class="hero-subtitle">Four-time Australian record holder. T37 para-athlete. 18 years old.</p>
+            <p class="hero-tagline">Chasing times. Chasing LA 2028.</p>
+        </div>
+    </section>
 
-  <!-- HERO -->
-  <div class="hero">
-    <p class="eyebrow">T37 Para Athlete &nbsp;&middot;&nbsp; Middle Distance &amp; Cross Country</p>
-    <h1>Leo Reeve</h1>
-    <p>A runner's story — chasing times, racing trails, and finding something worth working for on every start line.</p>
-    <div class="hero-divider"></div>
-  </div>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-inner">
-      <p class="section-label">About</p>
-      <h2>Running is just the start</h2>
-      <p>Leo Reeve is a T37 para-athlete from Victoria and a multiple national champion in middle distance and cross country running. He holds four Australian records across the 800m and 1500m — at both Under 17 and Under 20 level — and trains with singular focus, logging 3–4 hours on the track every day. Whether it's the controlled burn of an 800m or the mud and grit of a cross country course, Leo brings the same deep commitment to every race.</p>
-      <p>Off the track, Leo coaches Little Athletics at his local club, working with young athletes aged 8–12 — including those with a disability — to build both technical skills and self-belief. As an NDIS participant living with cerebral palsy, he knows what it means to be underestimated, and he works to make sure the athletes in his care don't carry that weight. He also co-leads the Year 6 camp at Brighton Grammar, where he guides younger students through challenge and growth.</p>
-      <p>Beyond athletics, Leo is finishing Year 12 at Brighton Grammar School, where he won the Senior Legal Studies Prize and leads the school's Diversity &amp; Inclusion work — including a project that opened up special exam provisions for 15+ students with learning difficulties. He's as engaged in policy and advocacy as he is in sport: curious about law, disability rights, and the systems that shape people's lives, and determined to help improve them.</p>
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Australian Records</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">Multi</div>
+            <div class="stat-label">National Champion</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3–4hrs</div>
+            <div class="stat-label">Daily Training</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">Since 16</div>
+            <div class="stat-label">Coaching Athletes</div>
+        </div>
     </div>
-  </section>
 
-  <!-- RESULTS -->
-  <section id="results">
-    <div class="section-inner">
-      <p class="section-label">Race Results</p>
-      <h2>Notable performances</h2>
-      <!-- 2025 National Championships -->
-      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2025 National Championships &nbsp;&middot;&nbsp; T37 Under 20</p>
-      <div class="results-grid" style="margin-bottom:2.5rem;">
-
-        <div class="result-card">
-          <div class="event">800m T37</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">Australian Athletics Championships &nbsp;&middot;&nbsp; Perth, WA &nbsp;&middot;&nbsp; 2025</p>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About</h2>
+                <p>I'm 18, a T37 para-athlete from Victoria, and I've spent the last few years chasing times that seemed impossible.</p>
+                <p>Being born with cerebral palsy means I race in the T37 classification, and I've used that to push myself harder. I've broken the Australian record for the 800m and 1500m – both under 17 and under 20 categories. I'm a national champion and I train 3–4 hours most days because I genuinely love running. The times still feel fresh; the hunger isn't fading.</p>
+                <p>Year 12 at Brighton Grammar has been balanced with serious athletics. I won the Senior Legal Studies Prize and I've been leading diversity and inclusion work at school – making sure athletes with disabilities aren't just an afterthought in conversations about sport and participation.</p>
+                <p>Coaching little athletes since I was 16 has become a big part of who I am. I work with kids aged 8–12, including those with disabilities through Little Athletics. There's something about helping someone find their stride, literally and figuratively, that matters more than any personal time.</p>
+                <p>I'm an NDIS participant, which has been crucial in accessing support and services that help me train and compete at the level I do. I'm not shy about disability – it's woven into my story, not separate from it.</p>
+            </div>
         </div>
+    </section>
 
-        <div class="result-card">
-          <div class="event">National Cross Country</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">Australian Cross Country Championships &nbsp;&middot;&nbsp; Ballarat, VIC &nbsp;&middot;&nbsp; 2025</p>
+    <!-- What's Next Section -->
+    <section class="whats-next" id="whats-next">
+        <div class="container">
+            <div class="whats-next-content">
+                <h2>What's next</h2>
+                <p>LA 2028 is the goal. The Paralympics are where I want to be racing, and there's real work happening right now to make that happen. I'm focused on bringing my personal bests down further – the records I've set are mine to beat, and I intend to.</p>
+                <p>Beyond my own times, I want to expand what I'm doing with coaching. The more young athletes with disabilities I can work with, the better. Sport changed my life. I know it can do the same for others if they get the right support and space to grow.</p>
+                <p>School ends this year. What comes after involves balancing elite sport with whatever comes next – university, further training, or both. I haven't figured it all out yet, but I'm figuring it out on my terms.</p>
+            </div>
         </div>
+    </section>
 
-      </div>
+    <!-- Results Section -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="results-container">
+                <h2>Notable performances</h2>
 
-      <!-- 2024 National Championships -->
-      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2024 National Championships &nbsp;&middot;&nbsp; T37 Under 20</p>
-      <div class="results-grid" style="margin-bottom:2.5rem;">
+                <div class="results-category records">
+                    <h3>Australian Records – T37 class</h3>
+                    <div class="result-item">
+                        <div class="result-time">2:09.87</div>
+                        <div class="result-event">800m T37 – Under 20</div>
+                        <div class="result-date">Perth, WA · 12 Apr 2025</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">4:24.84</div>
+                        <div class="result-event">1500m T37 – Under 20</div>
+                        <div class="result-date">Melbourne, VIC · 21 Feb 2025</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">2:14.03</div>
+                        <div class="result-event">800m T37 – Under 17</div>
+                        <div class="result-date">Melbourne, VIC · 4 Nov 2023</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">4:53.00</div>
+                        <div class="result-event">1500m T37 – Under 17</div>
+                        <div class="result-date">Melbourne, VIC · 24 Feb 2023</div>
+                    </div>
+                </div>
 
-        <div class="result-card">
-          <div class="event">800m T37</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">2:12.11 &nbsp;&middot;&nbsp; Australian Athletics Championships &nbsp;&middot;&nbsp; Mile End, SA &nbsp;&middot;&nbsp; 13 Apr 2024</p>
+                <div class="results-category">
+                    <h3>2025 National Championships – T37 Under 20</h3>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">800m T37 – Australian Athletics Championships</div>
+                        <div class="result-date">Perth, WA · 2025</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">National Cross Country – Australian Cross Country Championships</div>
+                        <div class="result-date">Ballarat, VIC · 2025</div>
+                    </div>
+                </div>
+
+                <div class="results-category">
+                    <h3>2024 National Championships – T37 Under 20</h3>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">800m T37 – Australian Athletics Championships</div>
+                        <div class="result-date">2:12.11 · Mile End, SA · 13 Apr 2024</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">1500m T37 – Australian Athletics Championships</div>
+                        <div class="result-date">4:26.65 · Mile End, SA · 12 Apr 2024</div>
+                    </div>
+                </div>
+
+                <div class="results-category">
+                    <h3>2023 National &amp; Junior Championships – T37 Under 17</h3>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">1500m T37 – Australian Junior Championships</div>
+                        <div class="result-date">4:53.47 · Brisbane, QLD · Apr 2023</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">1st</div>
+                        <div class="result-event">3km Cross Country T37 – Australian Cross Country Championships</div>
+                        <div class="result-date">10:29 · Canberra, ACT · 26 Aug 2023</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">4th</div>
+                        <div class="result-event">800m T37 – Australian Junior Championships</div>
+                        <div class="result-date">2:22.13 · Brisbane, QLD · Apr 2023</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-time">3rd</div>
+                        <div class="result-event">400m T37 – Australian Junior Championships</div>
+                        <div class="result-date">64.28 · Brisbane, QLD · Apr 2023</div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="result-card">
-          <div class="event">1500m T37</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">4:26.65 &nbsp;&middot;&nbsp; Australian Athletics Championships &nbsp;&middot;&nbsp; Mile End, SA &nbsp;&middot;&nbsp; 12 Apr 2024</p>
+    <!-- Connect Section -->
+    <section class="connect" id="connect">
+        <h2>Follow Along</h2>
+        <p class="connect-intro">Training updates, race results, and coaching insights.</p>
+        <div class="connect-links">
+            <a href="https://www.linkedin.com/in/leo-reeve-15ba2639a/" target="_blank" rel="noopener" class="connect-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://instagram.com/leoreeve" target="_blank" rel="noopener" class="connect-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                Instagram
+            </a>
         </div>
+    </section>
 
-      </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Leo Reeve &nbsp;&middot;&nbsp; <a href="https://leoreeve.com">leoreeve.com</a></p>
+    </footer>
 
-      <!-- 2023 Junior Championships & Cross Country -->
-      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">2023 National &amp; Junior Championships &nbsp;&middot;&nbsp; T37 Under 17</p>
-      <div class="results-grid" style="margin-bottom:2.5rem;">
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
 
-        <div class="result-card">
-          <div class="event">1500m T37</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">4:53.47 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
-        </div>
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
 
-        <div class="result-card">
-          <div class="event">3km Cross Country T37</div>
-          <div class="position gold">1st Place</div>
-          <p class="detail">10:29 &nbsp;&middot;&nbsp; Australian Cross Country Championships &nbsp;&middot;&nbsp; Canberra, ACT &nbsp;&middot;&nbsp; 26 Aug 2023</p>
-        </div>
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
 
-        <div class="result-card">
-          <div class="event">800m T37</div>
-          <div class="position">4th Place</div>
-          <p class="detail">2:22.13 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
-        </div>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        <div class="result-card">
-          <div class="event">400m T37</div>
-          <div class="position">3rd Place</div>
-          <p class="detail">64.28 &nbsp;&middot;&nbsp; Australian Junior Championships &nbsp;&middot;&nbsp; Brisbane, QLD &nbsp;&middot;&nbsp; 13–16 Apr 2023</p>
-        </div>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-      </div>
+        // Observe all major sections
+        document.querySelectorAll('.about, .whats-next, .results, .connect').forEach(section => {
+            observer.observe(section);
+        });
 
-      <!-- Australian Records -->
-      <p style="color:var(--moss);font-size:0.85rem;margin-bottom:1rem;">Australian Records &nbsp;&middot;&nbsp; T37 class</p>
-      <div class="results-grid">
-
-        <div class="result-card">
-          <div class="event">800m T37 &ndash; Under 20</div>
-          <div class="position">Australian Record</div>
-          <p class="detail">2:09.87 &nbsp;&middot;&nbsp; Perth, WA &nbsp;&middot;&nbsp; 12 Apr 2025</p>
-        </div>
-
-        <div class="result-card">
-          <div class="event">1500m T37 &ndash; Under 20</div>
-          <div class="position">Australian Record</div>
-          <p class="detail">4:24.84 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 21 Feb 2025</p>
-        </div>
-
-        <div class="result-card">
-          <div class="event">800m T37 &ndash; Under 17</div>
-          <div class="position">Australian Record</div>
-          <p class="detail">2:14.03 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 4 Nov 2023</p>
-        </div>
-
-        <div class="result-card">
-          <div class="event">1500m T37 &ndash; Under 17</div>
-          <div class="position">Australian Record</div>
-          <p class="detail">4:53.00 &nbsp;&middot;&nbsp; Melbourne, VIC &nbsp;&middot;&nbsp; 24 Feb 2023</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONNECT -->
-  <section id="connect">
-    <div class="section-inner">
-      <p class="section-label">Connect</p>
-      <h2>Get in touch</h2>
-      <p>Follow Leo's running journey or get in touch via the links below.</p>
-      <div class="links-row">
-        <a class="link-btn primary" href="https://www.linkedin.com/in/leo-reeve-15ba2639a/" target="_blank" rel="noopener">
-          <!-- LinkedIn icon -->
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 .77 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.23 0z"/></svg>
-          LinkedIn
-        </a>
-        <!-- Email button — address is assembled by JS so it doesn't appear in plain text for scrapers -->
-        <a class="link-btn secondary" id="email-btn" href="#">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          Email Leo
-        </a>
-        <script>
-          (function () {
-            var u = 'leo';
-            var d = 'leoreeve.com';
-            var btn = document.getElementById('email-btn');
-            btn.href = 'mailto:' + u + '\x40' + d;
-          })();
-        </script>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    &copy; 2026 Leo Reeve &nbsp;&middot;&nbsp; <a href="https://leoreeve.com">leoreeve.com</a>
-  </footer>
-
+    </script>
 </body>
 </html>
